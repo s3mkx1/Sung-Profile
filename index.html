@@ -3,203 +3,366 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منشئ جلسة واتساب</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>SUNG DEV | مطور بوتات واتساب</title>
     <style>
-        :root {
-            --primary-color: #25D366;
-            --bg-color: #f5f5f5;
-            --text-color: #333;
-            --card-bg: #fff;
-            --border-color: #ddd;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
         
-        .dark-mode {
-            --primary-color: #128C7E;
-            --bg-color: #1a1a1a;
-            --text-color: #f0f0f0;
-            --card-bg: #2d2d2d;
-            --border-color: #444;
+        :root {
+            --primary-color: #8B0000;
+            --secondary-color: #580000;
+            --accent-color: #FF6B6B;
+            --text-color: #F8F8F8;
+            --bg-color: #1A1A1A;
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            transition: background-color 0.3s, color 0.3s;
+            font-family: 'Tajawal', sans-serif;
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
-            padding: 20px;
+            overflow-x: hidden;
             line-height: 1.6;
         }
         
         .container {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 20px;
         }
         
-        header {
+        /* شاشة الترحيب */
+        .welcome-screen {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .welcome-screen::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--bg-color) 100%);
+            opacity: 0.7;
+            z-index: -1;
+        }
+        
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--accent-color);
+            cursor: pointer;
+            transition: all 0.5s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             margin-bottom: 30px;
-            padding: 20px 0;
-            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .profile-image:hover {
+            transform: scale(1.05);
+        }
+        
+        .profile-image.active {
+            animation: moveAndRotate 2s ease-in-out;
+        }
+        
+        @keyframes moveAndRotate {
+            0% { transform: translateX(0) rotate(0); }
+            25% { transform: translateX(100px) rotate(90deg); }
+            50% { transform: translateY(100px) rotate(180deg); }
+            75% { transform: translateX(-100px) rotate(270deg); }
+            100% { transform: translateX(0) rotate(360deg); }
         }
         
         h1 {
-            color: var(--primary-color);
-            margin-bottom: 10px;
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
         
-        .mode-toggle {
-            background: none;
-            border: none;
-            color: var(--text-color);
-            cursor: pointer;
-            font-size: 20px;
-            position: absolute;
-            left: 20px;
-            top: 20px;
-        }
-        
-        .session-form {
-            background-color: var(--card-bg);
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            border: 1px solid var(--border-color);
+        .tagline {
+            font-size: 1.5rem;
             margin-bottom: 30px;
+            max-width: 700px;
         }
         
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
-        
-        input, select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid var(--border-color);
-            border-radius: 5px;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-        }
-        
-        button {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            width: 100%;
-            margin-top: 10px;
-        }
-        
-        button:hover {
-            opacity: 0.9;
-        }
-        
-        .result {
-            margin-top: 30px;
-            padding: 20px;
-            background-color: var(--card-bg);
-            border-radius: 10px;
-            border: 1px solid var(--border-color);
-            display: none;
-        }
-        
-        pre {
-            background-color: var(--bg-color);
-            padding: 15px;
-            border-radius: 5px;
-            overflow-x: auto;
-            font-family: 'Courier New', monospace;
-        }
-        
-        .action-buttons {
+        .social-icons {
             display: flex;
-            gap: 10px;
-            margin-top: 15px;
+            gap: 20px;
+            margin-top: 20px;
         }
         
-        .action-buttons button {
-            flex: 1;
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 24px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
         
-        footer {
+        .social-icon:hover {
+            transform: translateY(-5px);
+            background-color: var(--accent-color);
+        }
+        
+        /* المحتوى الرئيسي */
+        .main-content {
+            padding: 80px 0;
+            background-color: var(--bg-color);
+        }
+        
+        .section-title {
             text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--accent-color);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+        
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
             margin-top: 50px;
-            padding: 20px 0;
-            border-top: 1px solid var(--border-color);
-            font-size: 0.9rem;
+        }
+        
+        .service-card {
+            background-color: #2A2A2A;
+            padding: 30px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            border-left: 5px solid var(--primary-color);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(139, 0, 0, 0.2);
+        }
+        
+        .service-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+        }
+        
+        .service-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        /* الجملة العميقة */
+        .deep-quote {
+            background-color: var(--secondary-color);
+            padding: 80px 0;
+            text-align: center;
+            margin: 80px 0;
+            position: relative;
+        }
+        
+        .deep-quote::before {
+            content: '"';
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 120px;
+            color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .quote-text {
+            font-size: 1.8rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            line-height: 1.8;
+            font-style: italic;
+        }
+        
+        .quote-author {
+            font-size: 1.2rem;
+            color: var(--accent-color);
+        }
+        
+        /* فوتر */
+        footer {
+            background-color: var(--secondary-color);
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .footer-text {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+        
+        /* تأثيرات الجسيمات */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .particle {
+            position: absolute;
+            background-color: rgba(255, 107, 107, 0.5);
+            border-radius: 50%;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <button class="mode-toggle" id="modeToggle">
-            <i class="fas fa-moon"></i>
-        </button>
+    <!-- شاشة الترحيب -->
+    <section class="welcome-screen">
+        <div class="particles" id="particles-js"></div>
+        <img src="https://via.placeholder.com/200" alt="صورة SUNG DEV" class="profile-image" id="profileImage">
+        <h1>SUNG DEV</h1>
+        <p class="tagline">فن برمجة بوتات الواتساب يتجاوز الأكواد، إنه بناء جسور بين التقنية والإنسان</p>
         
-        <header>
-            <h1><i class="fab fa-whatsapp"></i> منشئ جلسة واتساب</h1>
-            <p>قم بإنشاء جلسة بوت واتساب بسهولة</p>
-        </header>
-        
-        <div class="session-form">
-            <div class="form-group">
-                <label for="sessionName">اسم الجلسة:</label>
-                <input type="text" id="sessionName" placeholder="مثال: bot-session">
-            </div>
-            
-            <div class="form-group">
-                <label for="apiType">نوع API:</label>
-                <select id="apiType">
-                    <option value="baileys">Baileys</option>
-                    <option value="whatsapp-web.js">whatsapp-web.js</option>
-                </select>
-            </div>
-            
-            <div class="form-group">
-                <label for="qrType">نوع QR:</label>
-                <select id="qrType">
-                    <option value="terminal">عرض في الترمينال</option>
-                    <option value="web">عرض في صفحة الويب</option>
-                </select>
-            </div>
-            
-            <button id="generateBtn">إنشاء الجلسة</button>
+        <div class="social-icons">
+            <a href="#" class="social-icon">📱</a> <!-- واتساب -->
+            <a href="#" class="social-icon">📷</a> <!-- انستجرام -->
         </div>
-        
-        <div class="result" id="resultContainer">
-            <h3>كود الجلسة:</h3>
-            <pre id="sessionCode"></pre>
-            
-            <div class="action-buttons">
-                <button id="copyBtn"><i class="fas fa-copy"></i> نسخ الكود</button>
-                <button id="downloadBtn"><i class="fas fa-download"></i> تنزيل الكود</button>
-            </div>
-            
-            <div id="qrContainer" style="margin-top: 20px; text-align: center;"></div>
-        </div>
-    </div>
+    </section>
     
+    <!-- المحتوى الرئيسي -->
+    <section class="main-content">
+        <div class="container">
+            <h2 class="section-title">خدماتي في برمجة بوتات الواتساب</h2>
+            
+            <div class="services">
+                <div class="service-card">
+                    <div class="service-icon">🤖</div>
+                    <h3 class="service-title">بوتات مخصصة</h3>
+                    <p>تصميم وتطوير بوتات واتساب مخصصة حسب احتياجاتك، بدءًا من البوتات البسيطة وحتى الأنظمة المعقدة.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">⚙️</div>
+                    <h3 class="service-title">تكامل الأنظمة</h3>
+                    <p>ربط بوتات الواتساب مع قواعد البيانات وأنظمة CRM وأنظمة الدفع وغيرها من المنصات.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🔒</div>
+                    <h3 class="service-title">حلول آمنة</h3>
+                    <p>تطوير بوتات مع أعلى معايير الأمان وحماية البيانات لضمان خصوصية مستخدميك.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- جملة عميقة -->
+    <section class="deep-quote">
+        <div class="container">
+            <p class="quote-text">في عالم البرمجة، لا نكتب أوامر للآلات، بل ننسج أحلاماً تتحول إلى واقع. كل سطر كود هو لبنة في بناء مستقبل أكثر اتصالاً.</p>
+            <p class="quote-author">- SUNG DEV</p>
+        </div>
+    </section>
+    
+    <!-- فوتر -->
     <footer>
-        &copy; 2023 منشئ جلسة واتساب | تم التطوير بواسطة <strong>Sung</strong>
+        <div class="container">
+            <p class="footer-text">جميع الحقوق محفوظة &copy; 2023 SUNG DEV | مطور بوتات واتساب</p>
+        </div>
     </footer>
     
-    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
-    <script src="app.js"></script>
+    <script>
+        // تأثير تحريك الصورة عند النقر
+        const profileImage = document.getElementById('profileImage');
+        profileImage.addEventListener('click', function() {
+            this.classList.add('active');
+            setTimeout(() => {
+                this.classList.remove('active');
+            }, 2000);
+        });
+        
+        // إنشاء جسيمات متحركة
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles-js');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // أحجام عشوائية
+                const size = Math.random() * 10 + 5;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // مواقع عشوائية
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // شفافية عشوائية
+                particle.style.opacity = Math.random() * 0.5 + 0.1;
+                
+                // إضافة الجسيم
+                particlesContainer.appendChild(particle);
+                
+                // تحريك الجسيمات
+                animateParticle(particle);
+            }
+        }
+        
+        // تحريك الجسيمات
+        function animateParticle(particle) {
+            let x = Math.random() * 100;
+            let y = Math.random() * 100;
+            let xSpeed = (Math.random() - 0.5) * 0.2;
+            let ySpeed = (Math.random() - 0.5) * 0.2;
+            
+            function move() {
+                x += xSpeed;
+                y += ySpeed;
+                
+                // تغيير الاتجاه عند الوصول للحواف
+                if (x <= 0 || x >= 100) xSpeed *= -1;
+                if (y <= 0 || y >= 100) ySpeed *= -1;
+                
+                particle.style.left = `${x}%`;
+                particle.style.top = `${y}%`;
+                
+                requestAnimationFrame(move);
+            }
+            
+            move();
+        }
+        
+        // بدء إنشاء الجسيمات عند تحميل الصفحة
+        window.addEventListener('load', createParticles);
+    </script>
 </body>
 </html>
