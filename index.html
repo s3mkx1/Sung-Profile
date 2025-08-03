@@ -9,11 +9,11 @@
         @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;600;700&display=swap');
         
         :root {
-            --primary-color: #a83a3a; /* أحمر طفيف */
+            --primary-color: #a83a3a;
             --secondary-color: #3a1e1e;
             --accent-color: #d45d5d;
             --text-color: #e0e0e0;
-            --bg-color: #121212; /* أسود داكن */
+            --bg-color: #121212;
             --card-color: #1e1e1e;
             --nav-color: rgba(30, 30, 30, 0.95);
         }
@@ -33,7 +33,6 @@
             font-weight: 300;
         }
         
-        /* المسار العلوي المعدل */
         .navbar {
             background-color: var(--nav-color);
             position: fixed;
@@ -111,7 +110,6 @@
             padding: 0 30px;
         }
         
-        /* شاشة الترحيب المعدلة */
         .welcome-screen {
             height: 100vh;
             display: flex;
@@ -211,7 +209,6 @@
             box-shadow: 0 8px 25px rgba(168, 58, 58, 0.3);
         }
         
-        /* المحتوى الرئيسي المعدل */
         .main-content {
             padding: 100px 0;
             background-color: var(--bg-color);
@@ -280,7 +277,6 @@
             line-height: 1.8;
         }
         
-        /* الجملة العميقة المعدلة */
         .deep-quote {
             background-color: var(--card-color);
             padding: 100px 0;
@@ -320,7 +316,49 @@
             letter-spacing: 1px;
         }
         
-        /* فوتر معدل */
+        .personal-info {
+            background-color: var(--card-color);
+            padding: 60px 0;
+            margin: 80px 0;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .info-icon {
+            font-size: 24px;
+            color: var(--accent-color);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgba(168, 58, 58, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .info-content h3 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--accent-color);
+        }
+        
+        .info-content p {
+            color: rgba(224, 224, 224, 0.8);
+            font-size: 0.95rem;
+        }
+        
         footer {
             background-color: var(--card-color);
             padding: 40px 0;
@@ -334,7 +372,6 @@
             letter-spacing: 0.5px;
         }
         
-        /* تأثيرات الجسيمات المعدلة */
         .particles {
             position: absolute;
             top: 0;
@@ -351,12 +388,10 @@
             border-radius: 50%;
         }
         
-        /* تأثير التمرير السلس */
         html {
             scroll-behavior: smooth;
         }
         
-        /* زر العودة للأعلى */
         .back-to-top {
             position: fixed;
             bottom: 30px;
@@ -390,7 +425,6 @@
     </style>
 </head>
 <body>
-    <!-- المسار العلوي -->
     <nav class="navbar">
         <div class="nav-container">
             <a href="#" class="logo">SUNG<span>DEV</span></a>
@@ -403,20 +437,18 @@
         </div>
     </nav>
     
-    <!-- شاشة الترحيب -->
     <section class="welcome-screen" id="home">
         <div class="particles" id="particles-js"></div>
-        <img src="https://via.placeholder.com/200" alt="صورة SUNG DEV" class="profile-image" id="profileImage">
+        <img src="https://i.ibb.co/v6bS4vw5/20230708-192029.jpg" alt="صورة SUNG DEV" class="profile-image" id="profileImage">
         <h1>SUNG DEV</h1>
         <p class="tagline">فن برمجة بوتات الواتساب يتجاوز الأكواد، إنه بناء جسور بين التقنية والإنسان</p>
         
         <div class="social-icons">
-            <a href="https://wa.me/+994404570051" class="social-icon" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://wa.me/994404570051" class="social-icon" target="_blank"><i class="fab fa-whatsapp"></i></a>
             <a href="https://instagram.com/sung_devx" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
         </div>
     </section>
     
-    <!-- المحتوى الرئيسي -->
     <section class="main-content" id="services">
         <div class="container">
             <h2 class="section-title">خدماتي في برمجة بوتات الواتساب</h2>
@@ -443,7 +475,6 @@
         </div>
     </section>
     
-    <!-- جملة عميقة -->
     <section class="deep-quote" id="about">
         <div class="container">
             <p class="quote-text">في عالم البرمجة، لا نكتب أوامر للآلات، بل ننسج أحلاماً تتحول إلى واقع. كل سطر كود هو لبنة في بناء مستقبل أكثر اتصالاً.</p>
@@ -451,22 +482,61 @@
         </div>
     </section>
     
-    <!-- قسم التواصل -->
+    <section class="personal-info">
+        <div class="container">
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="info-content">
+                        <h3>الاسم</h3>
+                        <p>Sung Dev</p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="info-content">
+                        <h3>الهاتف</h3>
+                        <p>+994 40 457 0051</p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="info-content">
+                        <h3>البلد</h3>
+                        <p>مصر</p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-birthday-cake"></i>
+                    </div>
+                    <div class="info-content">
+                        <h3>العمر</h3>
+                        <p>18 سنة</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <section class="main-content" id="contact">
         <div class="container">
             <h2 class="section-title">تواصل معي</h2>
             
             <div class="services">
                 <div class="service-card" style="text-align: center;">
-                    <div class="service-icon"><i class="fas fa-envelope"></i></div>
-                    <h3 class="service-title">البريد الإلكتروني</h3>
-                    <p>sungsolo789@gmail.com</p>
-                </div>
-                
-                <div class="service-card" style="text-align: center;">
                     <div class="service-icon"><i class="fab fa-whatsapp"></i></div>
                     <h3 class="service-title">واتساب</h3>
-                    <p>+994404570051</p>
+                    <p>+994 40 457 0051</p>
                 </div>
                 
                 <div class="service-card" style="text-align: center;">
@@ -478,20 +548,17 @@
         </div>
     </section>
     
-    <!-- فوتر -->
     <footer>
         <div class="container">
             <p class="footer-text">جميع الحقوق محفوظة &copy; <span id="year"></span> SUNG DEV | مطور بوتات واتساب</p>
         </div>
     </footer>
     
-    <!-- زر العودة للأعلى -->
     <div class="back-to-top" id="backToTop">
         <i class="fas fa-arrow-up"></i>
     </div>
     
     <script>
-        // تأثير تحريك الصورة عند النقر
         const profileImage = document.getElementById('profileImage');
         profileImage.addEventListener('click', function() {
             this.classList.add('active');
@@ -500,7 +567,6 @@
             }, 2500);
         });
         
-        // إنشاء جسيمات متحركة
         function createParticles() {
             const particlesContainer = document.getElementById('particles-js');
             const particleCount = window.innerWidth < 768 ? 20 : 40;
@@ -509,27 +575,21 @@
                 const particle = document.createElement('div');
                 particle.classList.add('particle');
                 
-                // أحجام عشوائية
                 const size = Math.random() * 8 + 3;
                 particle.style.width = `${size}px`;
                 particle.style.height = `${size}px`;
                 
-                // مواقع عشوائية
                 particle.style.left = `${Math.random() * 100}%`;
                 particle.style.top = `${Math.random() * 100}%`;
                 
-                // شفافية عشوائية
                 particle.style.opacity = Math.random() * 0.4 + 0.1;
                 
-                // إضافة الجسيم
                 particlesContainer.appendChild(particle);
                 
-                // تحريك الجسيمات
                 animateParticle(particle);
             }
         }
         
-        // تحريك الجسيمات
         function animateParticle(particle) {
             let x = Math.random() * 100;
             let y = Math.random() * 100;
@@ -540,7 +600,6 @@
                 x += xSpeed;
                 y += ySpeed;
                 
-                // تغيير الاتجاه عند الوصول للحواف
                 if (x <= 0 || x >= 100) xSpeed *= -1;
                 if (y <= 0 || y >= 100) ySpeed *= -1;
                 
@@ -553,7 +612,6 @@
             move();
         }
         
-        // زر العودة للأعلى
         const backToTopBtn = document.getElementById('backToTop');
         
         window.addEventListener('scroll', function() {
@@ -571,10 +629,8 @@
             });
         });
         
-        // سنة حقوق النشر
         document.getElementById('year').textContent = new Date().getFullYear();
         
-        // بدء إنشاء الجسيمات عند تحميل الصفحة
         window.addEventListener('load', createParticles);
     </script>
 </body>
